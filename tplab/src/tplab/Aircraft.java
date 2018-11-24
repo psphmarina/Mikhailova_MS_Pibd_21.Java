@@ -102,8 +102,6 @@ public class Aircraft {
     {
     	//отрисовка
     	
-    	//super.paint(g);
-        
     	g.setColor(MainColor); 
         g.fillOval((int)_startPosX, (int)_startPosY, 90, 10);
         g.fillRect( (int)_startPosX + 60, (int)_startPosY - 22, 12, 50);
