@@ -8,11 +8,12 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+
 public class PanelAircraft extends JPanel {
 	
- 	private static Aircraft car;
-	static void setAircraft(Aircraft v) {  
-               car = v;
+	private static ITransport car;
+	static void setAircraft(ITransport car2) {
+               car = car2;
  	}
  	@Override
  	public void paint(Graphics g) {
