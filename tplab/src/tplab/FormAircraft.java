@@ -60,9 +60,8 @@ public class FormAircraft {
 		JButton btnCreate = new JButton("Create");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				Random rnd = new Random();
-	            car = new Aircraft(100+rnd.nextInt(300), 1000+rnd.nextInt(2000), Color.darkGray, Color.BLUE);
+	            car = new Aircraft(100+rnd.nextInt(300), 1000+rnd.nextInt(2000), Color.darkGray);
 	            car.SetPosition(rnd.nextInt(150) + 50, rnd.nextInt(150) + 50, 473, 376);
 	            PanelAircraft.setAircraft(car);
 				panel.repaint();
@@ -110,6 +109,19 @@ public class FormAircraft {
 		});
 		btnRight.setBounds(607, 298, 54, 29);
 		frame.getContentPane().add(btnRight);
+		
+		JButton btnCreateFighter = new JButton("CreateFighter");
+		btnCreateFighter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Random rnd = new Random();
+	            car = new FighterAircraft(100+rnd.nextInt(300), 1000+rnd.nextInt(2000), Color.darkGray, Color.GREEN, true, true, true);
+	            car.SetPosition(rnd.nextInt(150) + 50, rnd.nextInt(150) + 50, 473, 376);
+	            PanelAircraft.setAircraft(car);
+				panel.repaint();
+			}
+		});
+		btnCreateFighter.setBounds(504, 48, 134, 23);
+		frame.getContentPane().add(btnCreateFighter);
 		
 	}
 }
