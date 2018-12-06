@@ -54,28 +54,28 @@ public class FighterAircraft extends Aircraft{
     	
     	if (DopMotor) {
     		g.setColor(DopColor);
-    		g.fillOval((int)_startPosX + 45, (int)_startPosY - 10, 35, 5);
-    		g.fillOval( (int)_startPosX + 45, (int)_startPosY + 12, 35, 5);
+    		g.fillOval((int)_startPosX + 45, (int)_startPosY, 35, 5);
+    		g.fillOval( (int)_startPosX + 45, (int)_startPosY + 22, 35, 5);
     		g.setColor(Color.BLACK);
-            g.drawOval( (int)_startPosX + 45, (int)_startPosY - 10, 35, 5);
-            g.drawOval((int)_startPosX + 45, (int)_startPosY + 12, 35, 5);
+            g.drawOval( (int)_startPosX + 45, (int)_startPosY + 22, 35, 5);
+            g.drawOval((int)_startPosX + 45, (int)_startPosY, 35, 5);
        }
     	
     	if (Bomb)
         {
     		g.setColor(Color.BLACK);
-    		g.fillOval((int)_startPosX + 80, (int)_startPosY - 10, 7, 5);
-    		g.fillOval((int)_startPosX + 80, (int)_startPosY + 15, 7, 5);
-    		g.fillOval( (int)_startPosX + 95, (int)_startPosY - 10, 7, 5);
-    		g.fillOval( (int)_startPosX + 95, (int)_startPosY + 15, 7, 5);
+    		g.fillOval((int)_startPosX + 80, (int)_startPosY, 7, 5);
+    		g.fillOval((int)_startPosX + 80, (int)_startPosY + 20, 7, 5);
+    		g.fillOval( (int)_startPosX + 95, (int)_startPosY + 20, 7, 5);
+    		g.fillOval( (int)_startPosX + 95, (int)_startPosY, 7, 5);
         }
     	if (Exhaust)
         {
     		g.setColor(Color.GRAY);
-    		g.fillOval( (int)_startPosX + 20, (int)_startPosY - 18, 17, 15);
-    		g.fillOval( (int)_startPosX + 7, (int)_startPosY - 25, 20, 15);
-    		g.fillOval( (int)_startPosX + 20, (int)_startPosY + 20, 17, 15);
-    		g.fillOval( (int)_startPosX + 7, (int)_startPosY + 25, 20, 15);
+    		g.fillOval( (int)_startPosX + 20, (int)_startPosY - 8, 17, 15);
+    		g.fillOval( (int)_startPosX + 7, (int)_startPosY - 15, 20, 15);
+    		g.fillOval( (int)_startPosX + 20, (int)_startPosY + 30, 17, 15);
+    		g.fillOval( (int)_startPosX + 7, (int)_startPosY + 35, 20, 15);
         }
     }
 }

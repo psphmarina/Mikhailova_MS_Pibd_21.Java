@@ -54,23 +54,21 @@ public class Aircraft extends Plane{
     public void DrawAircraft(Graphics g)
     {
     	//отрисовка
-    	
-    	//super.paint(g);
         
     	g.setColor(MainColor); 
-        g.fillOval( (int)_startPosX, (int)_startPosY, 90, 10);
-        g.fillRect( (int)_startPosX + 60, (int)_startPosY - 22, 12, 50);
-        g.fillRect( (int)_startPosX + 10, (int)_startPosY - 10, 8, 30);
-        g.fillOval( (int)_startPosX + 45, (int)_startPosY - 20, 40, 5);
-        g.fillOval( (int)_startPosX + 45, (int)_startPosY + 20, 40, 5);
+        g.fillOval( (int)_startPosX, (int)_startPosY+10, 90, 10);
+        g.fillRect( (int)_startPosX + 60, (int)_startPosY - 12, 12, 50);
+        g.fillRect( (int)_startPosX + 10, (int)_startPosY, 8, 30);
+        g.fillOval( (int)_startPosX + 45, (int)_startPosY - 10, 40, 5);
+        g.fillOval( (int)_startPosX + 45, (int)_startPosY + 30, 40, 5);
         
         //контуры
         g.setColor(Color.BLACK);
-        g.drawOval( (int)_startPosX, (int)_startPosY, 90, 10);
-        g.drawRect( (int)_startPosX + 60, (int)_startPosY - 22, 12, 50);
-        g.drawRect((int)_startPosX + 10, (int)_startPosY - 10, 8, 30);
-        g.drawOval((int)_startPosX + 45, (int)_startPosY - 20, 40, 5);
-        g.drawOval((int)_startPosX + 45, (int)_startPosY + 20, 40, 5);
+        g.drawOval( (int)_startPosX, (int)_startPosY+10, 90, 10);
+        g.drawRect( (int)_startPosX + 60, (int)_startPosY - 12, 12, 50);
+        g.drawRect((int)_startPosX + 10, (int)_startPosY, 8, 30);
+        g.drawOval((int)_startPosX + 45, (int)_startPosY - 10, 40, 5);
+        g.drawOval((int)_startPosX + 45, (int)_startPosY + 30, 40, 5);
         
      }
 }
