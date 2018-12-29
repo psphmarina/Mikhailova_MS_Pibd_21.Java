@@ -55,17 +55,17 @@ public class CarConfig extends JDialog {
  
           Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
  
-          JLabel labelSimpleShip = new JLabel("Самолёт");
-         labelSimpleShip.setHorizontalAlignment(SwingConstants.CENTER);
-         labelSimpleShip.setBounds(10, 29, 153, 84);
-         labelSimpleShip.setBorder(new LineBorder(new Color(0, 0, 0)));
-         getContentPane().add(labelSimpleShip);
+          JLabel labelAircraft = new JLabel("Самолёт");
+         labelAircraft.setHorizontalAlignment(SwingConstants.CENTER);
+         labelAircraft.setBounds(10, 29, 153, 84);
+         labelAircraft.setBorder(new LineBorder(new Color(0, 0, 0)));
+         getContentPane().add(labelAircraft);
  
-          JLabel labelShip = new JLabel("Истребитель");
-         labelShip.setHorizontalAlignment(SwingConstants.CENTER);
-         labelShip.setBounds(10, 135, 153, 84);
-         labelShip.setBorder(new LineBorder(new Color(0, 0, 0)));
-         getContentPane().add(labelShip);
+          JLabel labelFAircraft = new JLabel("Истребитель");
+         labelFAircraft.setHorizontalAlignment(SwingConstants.CENTER);
+         labelFAircraft.setBounds(10, 135, 153, 84);
+         labelFAircraft.setBorder(new LineBorder(new Color(0, 0, 0)));
+         getContentPane().add(labelFAircraft);
  
           JLabel labelMainColor = new JLabel("Основной цвет");
          labelMainColor.setHorizontalAlignment(SwingConstants.CENTER);
@@ -94,10 +94,10 @@ public class CarConfig extends JDialog {
              }
          };
  
-         labelSimpleShip.addMouseListener(ml);
-         labelShip.addMouseListener(ml);
-         labelShip.setTransferHandler(new TransferHandler("text"));
-         labelSimpleShip.setTransferHandler(new TransferHandler("text"));
+         labelAircraft.addMouseListener(ml);
+         labelFAircraft.addMouseListener(ml);
+         labelFAircraft.setTransferHandler(new TransferHandler("text"));
+         labelAircraft.setTransferHandler(new TransferHandler("text"));
  
          carPanel.setDropTarget(new DropTarget() {
  
