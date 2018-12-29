@@ -11,7 +11,35 @@ public class FighterAircraft extends Aircraft{
     public void setDopColor(Color dop) {
         DopColor = dop;
     }
-    
+    public void setDopColor(String colorName) {
+        switch (colorName) {
+            case "magenta":
+            	DopColor = Color.MAGENTA;
+                break;
+            case "blue":
+            	DopColor = Color.BLUE;
+                break;
+            case "gray":
+            	DopColor = Color.GRAY;
+                break;
+            case "cyan":
+            	DopColor = Color.CYAN;
+                break;
+            case "yellow":
+            	DopColor = Color.YELLOW;
+                break;
+            case "orange":
+            	DopColor = Color.ORANGE;
+                break;
+            case "green":
+            	DopColor = Color.GREEN;
+                break;
+            case "black":
+            	DopColor = Color.BLACK;
+                break;
+        }
+
+     }
     private boolean DopMotor;
     public boolean getDopMotor() {
         return DopMotor;

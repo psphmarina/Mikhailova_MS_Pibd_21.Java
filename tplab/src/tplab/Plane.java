@@ -33,7 +33,36 @@ public abstract class Plane implements ITransport{
     private void setMainColor(Color newMainColor){
     	MainColor = newMainColor;
     	}
-    
+    @Override
+ 	public void setMainColor(String colorName){
+ 		switch (colorName) {
+ 		case "magenta":
+        	MainColor = Color.MAGENTA;
+            break;
+        case "blue":
+        	MainColor = Color.BLUE;
+            break;
+        case "gray":
+        	MainColor = Color.GRAY;
+            break;
+        case "cyan":
+        	MainColor = Color.CYAN;
+            break;
+         case "yellow":
+             MainColor = Color.YELLOW;
+             break;
+         case "orange":
+             MainColor = Color.ORANGE;
+             break;
+         case "green":
+             MainColor = Color.GREEN;
+             break;
+         case "black":
+             MainColor = Color.BLACK;
+             break;
+ 		}
+ 
+  	}
     public void SetPosition(int x, int y, int width, int height)
     {
         _startPosX = x;
