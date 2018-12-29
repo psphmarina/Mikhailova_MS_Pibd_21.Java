@@ -5,22 +5,32 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTextField;
 
 public class FormHangar {
 
 	private JFrame frame;
 	private JTextField textFieldTake;
-	private Hangar<ITransport> hangar;
+	MultiLevelHangar hangar;
 	private PanelHangar panelHangar;
 	private PanelAircraft panelAircraft;
+	private JList listLevels;
+    private DefaultListModel model;
+    private ITransport car;
+	private int countLevel = 5;
 
 	/**
 	 * Launch the application.
@@ -48,6 +58,7 @@ public class FormHangar {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("rawtypes")
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 470);
@@ -59,12 +70,31 @@ public class FormHangar {
 		frame.getContentPane().add(panelHangar);
 		
 		hangar = panelHangar.getHangar();
+		
+		JList listLevels = new JList();
+		listLevels.setBounds(613, 107, 161, 139);
+		frame.getContentPane().add(listLevels);
+		model = new DefaultListModel();
+        for(int i = 0; i < countLevel; i++)
+        {
+        	model.addElement("Уровень " + (i + 1));
+        }
+        listLevels.setModel(model);
+        listLevels.setSelectedIndex(0);
+        panelHangar.setListLevels(listLevels);   
+        listLevels.addListSelectionListener(new ListSelectionListener() { 
+			@Override 
+			public void valueChanged(ListSelectionEvent e) { 
+				panelHangar.repaint(); 
+			} 
+		});
+		
 		JButton buttonAircraft = new JButton("\u041F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0441\u0430\u043C\u043E\u043B\u0451\u0442");
 		buttonAircraft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 Color mainColor = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-	             Aircraft car = new Aircraft(100, 1000, mainColor);
-	             int place = hangar.Plus(car);
+	             car = new Aircraft(100, 1000, mainColor);
+	             int place = hangar.getHangar(listLevels.getSelectedIndex()).Plus(car);
 	             panelHangar.repaint();
 			}
 		});
@@ -77,7 +107,7 @@ public class FormHangar {
 				Color mainColor = JColorChooser.showDialog(null, "Choose a color", Color.RED);
 				Color dopColor = JColorChooser.showDialog(null, "Choose a color", Color.RED);
 				FighterAircraft car = new FighterAircraft(100, 1000, mainColor, dopColor, true, true,true);
-               	int place = hangar.Plus(car);
+               	int place = hangar.getHangar(listLevels.getSelectedIndex()).Plus(car);	
                	panelHangar.repaint();
 			}
 		});
@@ -101,8 +131,8 @@ public class FormHangar {
 		buttonTake.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!textFieldTake.getText().equals("")) {
-					int index = Integer.parseInt(textFieldTake.getText());
-					ITransport car = hangar.Minus(index);
+					Integer.parseInt(textFieldTake.getText());
+					ITransport car = hangar.getHangar(listLevels.getSelectedIndex()).Minus(Integer.parseInt(textFieldTake.getText()));
 					if (car != null) {
 						car.SetPosition(5, 25, panelAircraft.getWidth(), panelAircraft.getHeight());
 						panelAircraft.setAircraft(car);
@@ -117,7 +147,6 @@ public class FormHangar {
 		});
 		buttonTake.setBounds(647, 277, 89, 23);
 		frame.getContentPane().add(buttonTake);
-		
 		
 	}
 }
