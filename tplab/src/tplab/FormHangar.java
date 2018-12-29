@@ -92,27 +92,20 @@ public class FormHangar {
 		JButton buttonAircraft = new JButton("\u041F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0441\u0430\u043C\u043E\u043B\u0451\u0442");
 		buttonAircraft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 Color mainColor = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-	             car = new Aircraft(100, 1000, mainColor);
-	             int place = hangar.getHangar(listLevels.getSelectedIndex()).Plus(car);
-	             panelHangar.repaint();
+				if (listLevels.getSelectedIndex() > -1) {
+					CarConfig dConfig = new CarConfig(frame);
+					if (dConfig.isSuccessful()) {
+						car = dConfig.getAircraft();
+						int i = hangar.getHangar(listLevels.getSelectedIndex()).Plus(car);
+						panelHangar.repaint();
+					}
+				}
 			}
 		});
 		buttonAircraft.setBounds(617, 12, 162, 39);
 		frame.getContentPane().add(buttonAircraft);
 		
-		JButton buttonFAircraft = new JButton("\u041F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0438\u0441\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043B\u044C");
-		buttonFAircraft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Color mainColor = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-				Color dopColor = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-				FighterAircraft car = new FighterAircraft(100, 1000, mainColor, dopColor, true, true,true);
-               	int place = hangar.getHangar(listLevels.getSelectedIndex()).Plus(car);	
-               	panelHangar.repaint();
-			}
-		});
-		buttonFAircraft.setBounds(617, 62, 162, 39);
-		frame.getContentPane().add(buttonFAircraft);
+		
 		
 		JLabel label = new JLabel("\u041C\u0435\u0441\u0442\u043E:");
 		label.setBounds(637, 252, 46, 14);
@@ -147,6 +140,6 @@ public class FormHangar {
 		});
 		buttonTake.setBounds(647, 277, 89, 23);
 		frame.getContentPane().add(buttonTake);
-		
+			
 	}
 }
