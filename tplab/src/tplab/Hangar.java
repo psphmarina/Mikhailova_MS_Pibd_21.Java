@@ -3,9 +3,11 @@ package tplab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class Hangar <T extends ITransport > {
-	ArrayList<T> _places; 
+	private HashMap<Integer,T> _places;
+    private int _maxCount;
 	
  	private int PictureWidth;
  	public int getPictureWidth() {
@@ -28,22 +30,23 @@ class Hangar <T extends ITransport > {
 	
 	public Hangar( int sizes, int pictureWidth, int pictureHeight)
 	{
-	        _places = new ArrayList<T>();
+		    _maxCount = sizes;
+		    _places = new  HashMap<Integer,T>();
 	        PictureWidth = pictureWidth;
-	        PictureHeight = pictureHeight;
-	        for (int i = 0; i < sizes; i++)
-	        {
-	            _places.add (null);
-	        }
+	        PictureHeight = pictureHeight; 
 	}
 	
 	public  int Plus (T car)
     {
-        for (int i = 0; i < _places.size(); i++)
+		if (_places.size() == _maxCount)
         {
+            return -1;
+        }
+        for (int i = 0; i < _maxCount;  i++)
+        {	        
             if (CheckFreePlace(i))
             {
-                _places.add(i, car);
+                _places.put(i, car);
                 _places.get(i).SetPosition(10 + i / 5 * _placeSizeWidth + 5, i % 5 * _placeSizeHeight + 20, PictureWidth, PictureHeight);
                 return i;
             }
@@ -52,14 +55,14 @@ class Hangar <T extends ITransport > {
     }
 	public T Minus (int index)
     {
-       if (index < 0 || index > _places.size())
+		if (index < 0 || index > _maxCount)
         {
             return null;
         }
         if (!CheckFreePlace(index))
         {
             T car = _places.get(index);
-            _places.set(index, null);
+            _places.remove(index);
             return car;
         } 
         	return null;
@@ -67,30 +70,22 @@ class Hangar <T extends ITransport > {
     }
 	private boolean CheckFreePlace(int index)
     {
-        if (_places.get(index) == null) 
-        	{
-        	return true;
-        	} else {
-        		return false;
-        	}
+		 return !_places.containsKey(index); 
     }
 	public void Draw(Graphics g)
     {
-        DrawHangar(g);
+		DrawHangar(g);
         for (int i = 0; i < _places.size(); i++)
         {
-            if (!CheckFreePlace(i))
-            {
-            	_places.get(i).DrawAircraft(g);
-            }
+        	 _places.get(_places.keySet().toArray()[i]).DrawAircraft(g);
         }
     }
 	private void DrawHangar(Graphics g)
 	{
 	
 		g.setColor(Color.BLACK);         
-        g.drawRect(0, 0, (_places.size() / 5) * _placeSizeWidth, 480);
-        for (int i = 0; i < _places.size() / 5; i++)
+		g.drawRect(0, 0, (_places.size() / 5) * _placeSizeWidth, 480);
+        for (int i = 0; i < _maxCount / 5; i++)
         {
             for (int j = 0; j < 6; ++j)
             {
