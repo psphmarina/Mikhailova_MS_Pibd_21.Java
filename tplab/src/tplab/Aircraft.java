@@ -12,9 +12,9 @@ public class Aircraft extends Plane{
    
     public Aircraft(int maxSpeed, float weight,  Color mainColor)
     {
-    	setMaxSpeed(maxSpeed);
-        setWeight(weight);
-        setMainColor(mainColor);
+    	MaxSpeed = maxSpeed;
+    	Weight = weight;
+    	MainColor = mainColor;
     }
     public Aircraft(String info) {
 		String[] strs = info.split(";", 0);
