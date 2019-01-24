@@ -61,7 +61,7 @@ public class CarConfig extends JDialog {
          labelAircraft.setBorder(new LineBorder(new Color(0, 0, 0)));
          getContentPane().add(labelAircraft);
  
-          JLabel labelFAircraft = new JLabel("Истребитель");
+          JLabel labelFAircraft = new JLabel("Самолёт-штурмовик");
          labelFAircraft.setHorizontalAlignment(SwingConstants.CENTER);
          labelFAircraft.setBounds(10, 135, 153, 84);
          labelFAircraft.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -109,7 +109,7 @@ public class CarConfig extends JDialog {
                              car = new Aircraft(10, 10, Color.WHITE);
                              carPanel.setAircraft(car);
                              car.SetPosition(25, 50, carPanel.getWidth(), carPanel.getHeight());
-                         } else if (e.getTransferable().getTransferData(df) == "Истребитель") {
+                         } else if (e.getTransferable().getTransferData(df) == "Самолёт-штурмовик") {
                          	car = new FighterAircraft(30, 2, Color.WHITE, Color.BLACK, true, true, true);
                              carPanel.setAircraft(car);
                              car.SetPosition(25, 50, carPanel.getWidth(), carPanel.getHeight());
