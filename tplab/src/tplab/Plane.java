@@ -14,7 +14,7 @@ public abstract class Plane implements ITransport{
     public int getMaxSpeed() {
     	return MaxSpeed;
     	}
-    private void setMaxSpeed(int newSpeed){
+    protected void setMaxSpeed(int newSpeed){
     	MaxSpeed = newSpeed;
     	}
     
@@ -22,7 +22,7 @@ public abstract class Plane implements ITransport{
     public float getWeight() {
     	return Weight;
     	}
-    private void setWeight(float newWeight){
+    protected void setWeight(float newWeight){
     	Weight = newWeight;
     	}
     
@@ -30,7 +30,7 @@ public abstract class Plane implements ITransport{
     public Color getMainColor() {
     	return MainColor;
     	}
-    private void setMainColor(Color newMainColor){
+    protected void setMainColor(Color newMainColor){
     	MainColor = newMainColor;
     	}
     @Override

@@ -7,4 +7,5 @@ public interface ITransport {
     void MoveTransport(Direction direction);
     void setMainColor(String string);
     void DrawAircraft(Graphics g);
+    String toString();
 }

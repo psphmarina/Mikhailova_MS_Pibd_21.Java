@@ -75,6 +75,20 @@ public class FighterAircraft extends Aircraft{
         Exhaust = exhaust;
     }   
     
+    public FighterAircraft(String info){
+        super(info);
+        String[] strs = info.split(";");
+        if(strs.length == 11) {
+        MaxSpeed = Integer.parseInt(strs[0]);
+        Weight = Float.parseFloat(strs[1]);
+        MainColor = new Color(Integer.parseInt(strs[2]), Integer.parseInt(strs[3]), Integer.parseInt(strs[4]));
+        DopColor = new Color(Integer.parseInt(strs[5]), Integer.parseInt(strs[6]), Integer.parseInt(strs[7]));
+        DopMotor = Boolean.parseBoolean(strs[8]);
+        Bomb = Boolean.parseBoolean(strs[9]);
+        Exhaust = Boolean.parseBoolean(strs[10]);
+        }
+    }
+    
     @Override
     public void DrawAircraft(Graphics g)
     {
@@ -82,28 +96,33 @@ public class FighterAircraft extends Aircraft{
     	
     	if (DopMotor) {
     		g.setColor(DopColor);
-    		g.fillOval((int)_startPosX + 45, (int)_startPosY, 35, 5);
-    		g.fillOval( (int)_startPosX + 45, (int)_startPosY + 22, 35, 5);
+    		g.fillOval((int)_startPosX + 45, (int)_startPosY+ 10, 35, 5);
+    		g.fillOval( (int)_startPosX + 45, (int)_startPosY + 32, 35, 5);
     		g.setColor(Color.BLACK);
-            g.drawOval( (int)_startPosX + 45, (int)_startPosY + 22, 35, 5);
-            g.drawOval((int)_startPosX + 45, (int)_startPosY, 35, 5);
+            g.drawOval( (int)_startPosX + 45, (int)_startPosY + 32, 35, 5);
+            g.drawOval((int)_startPosX + 45, (int)_startPosY+ 10, 35, 5);
        }
     	
     	if (Bomb)
         {
     		g.setColor(Color.BLACK);
-    		g.fillOval((int)_startPosX + 80, (int)_startPosY, 7, 5);
-    		g.fillOval((int)_startPosX + 80, (int)_startPosY + 20, 7, 5);
-    		g.fillOval( (int)_startPosX + 95, (int)_startPosY + 20, 7, 5);
-    		g.fillOval( (int)_startPosX + 95, (int)_startPosY, 7, 5);
+    		g.fillOval((int)_startPosX + 80, (int)_startPosY+ 10, 7, 5);
+    		g.fillOval((int)_startPosX + 80, (int)_startPosY + 30, 7, 5);
+    		g.fillOval( (int)_startPosX + 95, (int)_startPosY + 30, 7, 5);
+    		g.fillOval( (int)_startPosX + 95, (int)_startPosY+ 10, 7, 5);
         }
     	if (Exhaust)
         {
     		g.setColor(Color.GRAY);
-    		g.fillOval( (int)_startPosX + 20, (int)_startPosY - 8, 17, 15);
-    		g.fillOval( (int)_startPosX + 7, (int)_startPosY - 15, 20, 15);
-    		g.fillOval( (int)_startPosX + 20, (int)_startPosY + 30, 17, 15);
-    		g.fillOval( (int)_startPosX + 7, (int)_startPosY + 35, 20, 15);
+    		g.fillOval( (int)_startPosX + 20, (int)_startPosY + 2, 17, 15);
+    		g.fillOval( (int)_startPosX + 7, (int)_startPosY - 5, 20, 15);
+    		g.fillOval( (int)_startPosX + 20, (int)_startPosY + 40, 17, 15);
+    		g.fillOval( (int)_startPosX + 7, (int)_startPosY + 45, 20, 15);
         }
+    }
+    @Override
+    public String toString() {
+        return super.toString()+ ";"+ DopColor.getRed() + ";" + DopColor.getGreen() + ";" 
+				+ DopColor.getBlue()+";"+DopMotor+";"+Bomb+";"+Exhaust;
     }
 }

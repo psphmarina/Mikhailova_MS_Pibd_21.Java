@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 class Hangar <T extends ITransport > {
 	private HashMap<Integer,T> _places;
     private int _maxCount;
@@ -30,10 +31,10 @@ class Hangar <T extends ITransport > {
 	
 	public Hangar( int sizes, int pictureWidth, int pictureHeight)
 	{
-		    _maxCount = sizes;
-		    _places = new  HashMap<Integer,T>();
+			_maxCount = sizes;
+			_places = new  HashMap<Integer,T>();
 	        PictureWidth = pictureWidth;
-	        PictureHeight = pictureHeight; 
+	        PictureHeight = pictureHeight;
 	}
 	
 	public  int Plus (T car)
@@ -74,7 +75,7 @@ class Hangar <T extends ITransport > {
     }
 	public void Draw(Graphics g)
     {
-		DrawHangar(g);
+        DrawHangar(g);
         for (int i = 0; i < _places.size(); i++)
         {
         	 _places.get(_places.keySet().toArray()[i]).DrawAircraft(g);
@@ -84,7 +85,7 @@ class Hangar <T extends ITransport > {
 	{
 	
 		g.setColor(Color.BLACK);         
-		g.drawRect(0, 0, (_places.size() / 5) * _placeSizeWidth, 480);
+        g.drawRect(0, 0, (_places.size() / 5) * _placeSizeWidth, 480);
         for (int i = 0; i < _maxCount / 5; i++)
         {
             for (int j = 0; j < 6; ++j)
@@ -96,4 +97,18 @@ class Hangar <T extends ITransport > {
             g.drawLine( i * _placeSizeWidth, 0, i * _placeSizeWidth, 400);
         }
 	}
+	
+	public T getAircraft(int index) {
+    	if (_places.get(index) != null) {
+			return _places.get(index);
+		} else {
+			return null;
+		}
+    }
+    public void setAircraft(int index, T car) {
+    	if(CheckFreePlace(index)) {
+    		_places.put(index, car);
+    		_places.get(index).SetPosition(5 + index / 5 * _placeSizeWidth + 5, index % 5 * _placeSizeHeight + 15, PictureWidth, PictureHeight);
+    	}
+    }
 }

@@ -8,18 +8,24 @@ import javax.swing.JPanel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+import java.awt.List;
+import java.lang.Object; 
 public class FormHangar {
 
 	private JFrame frame;
@@ -31,6 +37,7 @@ public class FormHangar {
     private DefaultListModel model;
     private ITransport car;
 	private int countLevel = 5;
+	
 
 	/**
 	 * Launch the application.
@@ -64,6 +71,56 @@ public class FormHangar {
 		frame.setBounds(100, 100, 800, 470);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+
+ 		JMenu menuFile = new JMenu("File");
+		menuBar.add(menuFile);
+
+ 		JMenuItem menuSave = new JMenuItem("Save");
+		menuSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser filesave = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("txt file", "txt");
+				filesave.setFileFilter(filter);
+				if (filesave.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file = filesave.getSelectedFile();
+					String path = file.getAbsolutePath();
+					if (hangar.saveData(path)) {
+						JOptionPane.showMessageDialog(null, "Saved");
+						return;
+					} else {
+						JOptionPane.showMessageDialog(null, "Save failed", "", 0, null);
+					}
+				}
+			}
+		});
+		menuFile.add(menuSave);
+
+ 		JMenuItem menuLoad = new JMenuItem("Load");
+		menuLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fileChooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("txt file", "txt");
+				fileChooser.setFileFilter(filter);
+				if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file = fileChooser.getSelectedFile();
+					try {
+						if (hangar.loadData(file.getAbsolutePath())) {
+							JOptionPane.showMessageDialog(null, "Loaded");
+						} else {
+							JOptionPane.showMessageDialog(null, "Load failed", "", 0, null);
+						}
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, ex.getMessage(), "", 0, null);
+					}
+					panelHangar.repaint();
+				}
+			}
+		});
+		menuFile.add(menuLoad);
+		
 		
 		panelHangar = new PanelHangar();
 		panelHangar.setBounds(0, 11, 607, 409);
@@ -140,6 +197,9 @@ public class FormHangar {
 		});
 		buttonTake.setBounds(647, 277, 89, 23);
 		frame.getContentPane().add(buttonTake);
-			
+		
+		
+		
 	}
 }
+
